@@ -29,6 +29,9 @@ users = (
 insert_query = "INSERT INTO users (id, firstname, lastname) VALUES (%s, %s, %s)"
 cursor.executemany(insert_query, users)
 
+
+
+
 select_query = "select * from users ORDER BY users"
 cursor.execute(select_query)
 data_fetch_from_db = cursor.fetchall()

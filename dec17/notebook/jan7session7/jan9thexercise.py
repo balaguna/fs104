@@ -10,18 +10,28 @@ connection = psycopg2.connect(user="postgres",
 
 cursor = connection.cursor()
     # SQL query to create a new table
-create_table_query = '''CREATE TABLE todolist
+create_table_query = '''CREATE TABLE tasks
           (
-          task varchar,
-          priority varchar,
-          due varchar,
+              id integer     NOT NULL,
+          firstname varchar,
+          lastname varchar,
           CONSTRAINT primary_key PRIMARY KEY (id)
           ); '''
 
-select_query = "select * from todolist"
+#autocommit
+connection.autocommit = True
+
+
+
+
+
+
+select_query = "select * from tasks ORDER BY tasks"
 cursor.execute(select_query)
-data_fetched_from_db = cursor.fetchall()
-print("data from table", data_fetched_from_db)
+data_fetch_from_db = cursor.fetchall()
+#print data one by one
+for data in data_fetch_from_db:
+    print("Ordered Date: ", data)
 
 if(connection):
     connection.close()

@@ -18,6 +18,8 @@ create_table_query = '''CREATE TABLE users
           CONSTRAINT primary_key PRIMARY KEY (id)
           ); '''
 
+#autocommit
+connection.autocommit = True
 
 #executemany
 users = (
@@ -28,6 +30,10 @@ users = (
 
 insert_query = "INSERT INTO users (id, firstname, lastname) VALUES (%s, %s, %s)"
 cursor.executemany(insert_query, users)
+
+
+
+
 
 select_query = "select * from users ORDER BY users"
 cursor.execute(select_query)
